@@ -5,7 +5,8 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
-from web_app import db
+db = SQLAlchemy()
+migrate = Migrate()
 
 class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
