@@ -4,3 +4,7 @@
 
 migrations
 *.db
+
+
+#ignore secret creds:
+.env

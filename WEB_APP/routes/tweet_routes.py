@@ -15,7 +15,7 @@ def list_tweets():
     # ]
     tweet_records = Tweetz.query.all()
     print(tweet_records)
-    tweets = parsed_records(tweet_records)
+    tweets = parse_records(tweet_records)
     return jsonify(tweets)
 
 @tweet_routes.route("/tweets")
