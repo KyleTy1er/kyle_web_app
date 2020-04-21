@@ -1,0 +1,21 @@
+<!-- web_app/templates/new_book.html -->
+
+{% set active_page = "new_tweet" %}
+
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <h1>New tweet Page</h1>
+
+    <p>Please fill out the form and submit to create a new tweet</p>
+
+    <form action="/tweets/create" method="POST">
+
+        <label>Tweet:</label>
+        <input type="text" name="text" placeholder="Enter Tweet">
+
+        <button>Submit</button>
+    </form>
+
+{% endblock %}

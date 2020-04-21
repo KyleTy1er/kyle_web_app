@@ -8,10 +8,10 @@ from flask_migrate import Migrate
 db = SQLAlchemy()
 migrate = Migrate()
 
-class Book(db.Model):
+class Tweetz(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(128))
-    author_id = db.Column(db.String(128))
+    user = db.Column(db.String(128))
+    text = db.Column(db.String(128))
 
 def parse_records(database_records):
     """

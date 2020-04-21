@@ -5,19 +5,19 @@
 
 {% block content %}
 
-    <h1> My Books Page </h1>
+    <h1> My Tweets Page </h1>
 
     <p>{{ message }} </p>
 
-    {% if books %}
+    {% if tweets %}
         <ul>
-        {% for book in books %}
-            <li>{{ book.title }}</li>
+        {% for tweet in tweets %}
+            <li>{{ tweet.text }}</li>
         {% endfor %}
         </ul>
 
     {% else %}
-        <p>Books not found.</p>
+        <p>Tweet not found.</p>
     {% endif %}
 
 {% endblock %}
