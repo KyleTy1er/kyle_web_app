@@ -48,6 +48,12 @@ def fetch_user_data(screen_name=None):
 
 
 @twitter_routes.route("/users")
-def ret_users():
-    return render_template('tu.html')
+def ret_users(screen_name=None):
+    api = api_client()
+    twitter_user = api.get_user(screen_name)
+    statuses = api.user_timeline(screen_name, tweet_mode="extended", count=150, exclude_replies=True, include_rts=False)
+    db_user = User.query.get(twitter_user.id) or User(id=twitter_user.id)
+    db_user.screen_name = twitter_user.screen_name
+    db_user.name = twitter_user.name
+    return render_template('tu.html', db_user=db_user)
     
