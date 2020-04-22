@@ -1,6 +1,6 @@
 # web_app/routes/twitter_routes.py
 
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, render_template
 
 from web_app.models import User, Tweet, db
 from web_app.services.twitter_service import api_client
@@ -45,4 +45,9 @@ def fetch_user_data(screen_name=None):
     db.session.commit()
 
     return "OK"
+
+
+@twitter_routes.route("/users")
+def ret_users():
+    return render_template('tu.html')
     

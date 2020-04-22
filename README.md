@@ -22,6 +22,8 @@ FLASK_APP=web_app flask db upgrade
 #Mac:
 FLASK_APP=WEB_APP flask run
 
+FLASK_DEBUG=1 "for debug mode"
+
 
 #Windows:
 export FLASK_APP=WEB_APP # one-time thing
