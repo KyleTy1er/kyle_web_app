@@ -2,7 +2,7 @@
 
 from flask import Blueprint, jsonify, render_template
 
-from web_app.models import User, Tweet, db
+from web_app.models import User, Tweet, db, parse_records
 from web_app.services.twitter_service import api_client
 from web_app.services.basilica_service import connection as basilica_connection
 
@@ -47,13 +47,42 @@ def fetch_user_data(screen_name=None):
     return "OK"
 
 
-@twitter_routes.route("/users")
-def ret_users(screen_name=None):
-    api = api_client()
-    twitter_user = api.get_user(screen_name)
-    statuses = api.user_timeline(screen_name, tweet_mode="extended", count=150, exclude_replies=True, include_rts=False)
-    db_user = User.query.get(twitter_user.id) or User(id=twitter_user.id)
-    db_user.screen_name = twitter_user.screen_name
-    db_user.name = twitter_user.name
-    return render_template('tu.html', db_user=db_user)
+# @twitter_routes.route("/users")
+# def ret_users(screen_name=None):
+#     api = api_client()
+#     twitter_user = api.get_user(screen_name)
+#     statuses = api.user_timeline(screen_name, tweet_mode="extended", count=150, exclude_replies=True, include_rts=False)
+#     db_user = User.query.get(twitter_user.id) or User(id=twitter_user.id)
+#     db_user.screen_name = twitter_user.screen_name
+#     db_user.name = twitter_user.name
+#     return render_template('tu.html', db_user=db_user)
     
+
+# web_app/routes/twitter_routes.py
+
+# ...
+
+# @twitter_routes.route("/users")
+# @twitter_routes.route("/users.json")
+# def list_users_human():
+#     db_users = User.query.all()
+#     users_response = parse_records(db_users)
+#     return jsonify(users_response)
+
+
+@twitter_routes.route("/users.json")
+def list_users():
+    db_users = User.query.all()
+    users_response = parse_records(db_users)
+    return render_template("users.html", user=db_users)
+
+
+@twitter_routes.route("/users/<screen_name>")
+def get_user(screen_name=None):
+    print(screen_name)
+    db_user = User.query.filter(User.screen_name == screen_name).one()
+    return render_template("users.html", user=db_user, tweets=db_user.tweets)
+
+#     # ...
+
+#     return render_template("user.html", user=db_user, tweets=statuses) # tweets=db_tweets
