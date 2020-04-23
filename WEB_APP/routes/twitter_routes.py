@@ -62,7 +62,9 @@ def fetch_user_data(screen_name=None):
 
 # ...
 
-# @twitter_routes.route("/users")
+@twitter_routes.route("/new_tweets")
+def new_tweets():
+    return render_template("new_tweet.html")
 # @twitter_routes.route("/users.json")
 # def list_users_human():
 #     db_users = User.query.all()
