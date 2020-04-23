@@ -13,7 +13,7 @@ from web_app.routes.stats_routes import stats_routes
 
 load_dotenv()
 
-DATABASE_URL = os.getenv("DATABASE_URL", default="sqlite:///kyle_twitter_db.db")
+DATABASE_URL = os.getenv("DATABASE_URL")
 SECRET_KEY = os.getenv("SECRET_KEY", default="super secret")
 
 def create_app():
