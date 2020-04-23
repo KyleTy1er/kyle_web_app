@@ -26,9 +26,9 @@ def store_twitter_user_data(screen_name):
     #breakpoint()
 
     print("STATUS COUNT:", len(statuses))
-    basilica_api = basilica_client()
+    # basilica_api = basilica_client()
     all_tweet_texts = [status.full_text for status in statuses]
-    embeddings = list(basilica_api.embed_sentences(all_tweet_texts, model="twitter"))
+    embeddings = list(basilica_client.embed_sentences(all_tweet_texts, model="twitter"))
     print("NUMBER OF EMBEDDINGS", len(embeddings))
 
     # TODO: explore using the zip() function maybe...

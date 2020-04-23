@@ -1,0 +1,18 @@
+
+{% set active_page = "reset_db" %}
+
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <h2>Let's RESET the DATABASE</h2>
+
+    <p>Use the form below to reset the db...</p>
+
+    <form action="/users" method=['GET', 'POST']>
+        <button name="reset_db" type="submit">reset</button>
+    </form>
+
+
+    {% endblock content %}
+
