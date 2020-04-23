@@ -19,13 +19,7 @@ def fetch_user_data(screen_name=None):
     statuses = api.user_timeline(screen_name, tweet_mode="extended", count=150, exclude_replies=True, include_rts=False)
     print("STATUSES COUNT:", len(statuses))
 
-    #new_book = Book(title=request.form["book_title"], author_id=request.form["author_name"])
-    #db.session.add(new_book)
-    #db.session.commit()
-
-    #
     # STORE USER
-    #
 
     # get existing user from the db or initialize a new one:
     db_user = User.query.get(twitter_user.id) or User(id=twitter_user.id)

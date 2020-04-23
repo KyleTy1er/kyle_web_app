@@ -1,12 +1,13 @@
 
 
-from flask import Blueprint
+from flask import Blueprint, render_template, jsonify
+
 
 home_routes = Blueprint("home_routes", __name__)
 
 @home_routes.route("/")
 def front_page():
-    return f"FRONT PAGE Y DID U CLICK THAT THO"
+    return render_template("home.html")
 
 @home_routes.route("/about")
 def about():
